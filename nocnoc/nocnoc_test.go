@@ -47,7 +47,7 @@ func TestSettingsCategories(t *testing.T) {
 	fmt.Println("")
 	fmt.Println("TestSettingsCategoriesresult =>", string(j))
 	fmt.Println("")
-	assert.Equal(t, "CAT105", *r.Data[0].ObjectId)
+	assert.Equal(t, "CAT104", *r.Data[0].ObjectId)
 }
 
 func TestDeleteSettingsCategories(t *testing.T) {
@@ -57,4 +57,19 @@ func TestDeleteSettingsCategories(t *testing.T) {
 		t.Errorf("DeleteSettingsCategories() failed: %s", err)
 	}
 
+}
+
+func TestAddSettingsCategories(t *testing.T) {
+
+	r, err := nn.AddSettingsCategories(context.Background(), "CAT104", true, true)
+	if err != nil {
+		t.Errorf("AddSettingsCategories() failed: %s", err)
+	}
+
+	//Check Result
+	j, _ := json.MarshalIndent(r, "", " ")
+	fmt.Println("")
+	fmt.Println("TestAddSettingsCategoriesresult =>", string(j))
+	fmt.Println("")
+	assert.Equal(t, "CAT104", *r.Data.ObjectId)
 }
